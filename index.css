@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* AtlasCard Inspired Dark Theme */
+  --bg-primary: #111111; /* Deep charcoal for a premium feel */
+  --dark-primary: #0a0a0a; /* Darker charcoal for auth background */
+  --surface-primary: #1C1C1E; /* Slightly lighter charcoal for cards */
+  --surface-secondary: #2C2C2E; /* Lighter grey for secondary elements */
+  --border-subtle: rgba(255, 255, 255, 0.1); /* Subtle white border */
+  
+  --text-primary: #FFFFFF; /* High-contrast white */
+  --text-secondary: #8E8E93; /* Medium Grey for secondary text */
+
+  --accent-primary: #6366F1; /* Vibrant Indigo/Blue */
+  --accent-primary-glow: rgba(99, 102, 241, 0.4);
+  --accent-positive: #34D399; /* Bright Emerald for gains */
+  --accent-negative: #F472B6; /* Bright Pink/Red for losses */
+  
+  /* Gradient for Buttons & Accents */
+  --gradient-start: #4F46E5; /* Indigo */
+  --gradient-end: #A855F7; /* Purple */
+
+  --icon-color-on-accent: #FFFFFF;
+
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+}
+
+
+/* Custom scrollbar for a modern look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Animated Particle Background for Modal */
+@keyframes move-particles {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(10px, 20px); }
+  50% { transform: translate(-10px, -15px); }
+  75% { transform: translate(15px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animated-particle-bg {
+    background-color: #0a0a0a;
+    background-image: 
+        radial-gradient(circle at 10% 20%, var(--gradient-start), transparent 30%),
+        radial-gradient(circle at 80% 90%, var(--gradient-end), transparent 30%),
+        radial-gradient(circle at 50% 50%, #1c1c1e, transparent 50%);
+    background-size: 200% 200%;
+    animation: move-particles 25s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Glassmorphism Card Style for Dark Theme */
+.glass-card {
+  background: rgba(28, 28, 30, 0.5); /* --surface-primary at 50% opacity */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* New Aurora Background Animation for Hero */
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-aurora-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse at top, #4f46e5, transparent 50%),
+              radial-gradient(ellipse at bottom, #a855f7, transparent 50%);
+  opacity: 0.2;
+  animation: aurora 15s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+
+/* Gradient border for Feature Cards */
+.feature-card-wrapper {
+  position: relative;
+  background-color: #1C1C1E; /* surface-primary */
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s ease-in-out;
+}
+
+.feature-card-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1px; /* border thickness */
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.feature-card-wrapper:hover::before {
+  opacity: 1;
+}
+.feature-card-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  filter: drop-shadow(0 0 15px var(--accent-primary-glow));
+}
+
+/* Button glow effect on hover */
+.button-glow:hover {
+  filter: drop-shadow(0 0 10px var(--accent-primary-glow));
+}
+
+/* Full width gradient for CTA */
+.cta-gradient-bg {
+  background: linear-gradient(90deg, #0a0a0a 0%, #111111 25%, var(--gradient-start) 50%, #111111 75%, #0a0a0a 100%);
+}
+
+.demo-banner {
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    box-shadow: 0 4px 15px var(--accent-primary-glow);
+}
